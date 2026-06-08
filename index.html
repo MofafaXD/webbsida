@@ -1,904 +1,288 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="sv" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Enkel Redovisningsbyrå AB – Bokföring & Redovisning i hela Sverige</title>
-<meta name="description" content="Vi hjälper företag och föreningar med bokföring, lönehantering, deklarationer och bokslut. Personlig service med lång erfarenhet.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --navy: #1a2744;
-    --navy-light: #243259;
-    --gold: #c8a96e;
-    --gold-light: #dfc49a;
-    --cream: #f8f4ee;
-    --cream-dark: #ede8df;
-    --text: #1a2744;
-    --text-mid: #4a5568;
-    --text-light: #718096;
-    --white: #ffffff;
-    --border: rgba(26,39,68,0.1);
-  }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text);
-    background: var(--white);
-    font-size: 16px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-  h1,h2,h3,h4 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.2; }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(255,255,255,0.97);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(8px);
-  }
-  .nav-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 32px;
-  }
-  .logo {
-    font-family: 'DM Serif Display', serif;
-    font-size: 20px; color: var(--navy); text-decoration: none;
-    letter-spacing: -0.3px;
-  }
-  .logo span { color: var(--gold); }
-  .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
-  .nav-links a {
-    text-decoration: none; color: var(--text-mid);
-    font-size: 14px; font-weight: 400; letter-spacing: 0.2px;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--navy); }
-  .nav-cta {
-    background: var(--navy) !important;
-    color: var(--white) !important;
-    padding: 10px 22px !important;
-    border-radius: 6px;
-    font-weight: 500 !important;
-    transition: background 0.2s !important;
-  }
-  .nav-cta:hover { background: var(--navy-light) !important; }
-
-  /* HERO */
-  .hero {
-    padding: 140px 32px 100px;
-    background: var(--cream);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; top: -60px; right: -80px;
-    width: 500px; height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(200,169,110,0.12) 0%, transparent 70%);
-  }
-  .hero::after {
-    content: '';
-    position: absolute; bottom: -40px; left: -60px;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(26,39,68,0.06) 0%, transparent 70%);
-  }
-  .hero-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-    position: relative; z-index: 1;
-  }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(200,169,110,0.15);
-    color: #8a6830;
-    font-size: 12px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase;
-    padding: 6px 14px; border-radius: 100px;
-    margin-bottom: 24px;
-  }
-  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-  .hero h1 {
-    font-size: clamp(36px, 4vw, 54px);
-    color: var(--navy); margin-bottom: 24px;
-    letter-spacing: -0.5px;
-  }
-  .hero h1 em { font-style: italic; color: var(--gold); }
-  .hero p {
-    font-size: 17px; color: var(--text-mid); line-height: 1.8;
-    margin-bottom: 36px; max-width: 440px;
-  }
-  .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn-primary {
-    display: inline-block; background: var(--navy); color: var(--white);
-    padding: 14px 28px; border-radius: 8px; text-decoration: none;
-    font-size: 15px; font-weight: 500; transition: all 0.2s;
-    border: 2px solid var(--navy);
-  }
-  .btn-primary:hover { background: var(--navy-light); border-color: var(--navy-light); transform: translateY(-1px); }
-  .btn-secondary {
-    display: inline-block; background: transparent; color: var(--navy);
-    padding: 14px 28px; border-radius: 8px; text-decoration: none;
-    font-size: 15px; font-weight: 500; transition: all 0.2s;
-    border: 2px solid var(--navy);
-  }
-  .btn-secondary:hover { background: var(--navy); color: var(--white); }
-
-  /* HERO VISUAL */
-  .hero-card-stack { position: relative; padding: 40px 0 40px 40px; }
-  .stat-card {
-    background: var(--white); border-radius: 16px;
-    padding: 24px 28px; box-shadow: 0 8px 40px rgba(26,39,68,0.10);
-    margin-bottom: 16px;
-    border-left: 4px solid var(--gold);
-    transition: transform 0.3s;
-  }
-  .stat-card:hover { transform: translateX(4px); }
-  .stat-card .label { font-size: 12px; color: var(--text-light); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
-  .stat-card .value { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--navy); }
-  .stat-card .sub { font-size: 13px; color: var(--text-mid); margin-top: 4px; }
-  .floating-pill {
-    position: absolute; right: 0; top: 60px;
-    background: var(--navy); color: var(--white);
-    border-radius: 100px; padding: 8px 16px;
-    font-size: 13px; font-weight: 500;
-    box-shadow: 0 4px 20px rgba(26,39,68,0.25);
-  }
-
-  /* TRUST BAR */
-  .trust-bar {
-    background: var(--navy);
-    padding: 28px 32px;
-  }
-  .trust-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: flex; justify-content: space-around; align-items: center;
-    flex-wrap: wrap; gap: 24px;
-  }
-  .trust-item {
-    display: flex; align-items: center; gap: 12px;
-    color: rgba(255,255,255,0.8); font-size: 14px;
-  }
-  .trust-icon {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: rgba(200,169,110,0.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-  }
-  .trust-divider { width: 1px; height: 30px; background: rgba(255,255,255,0.15); }
-
-  /* SECTIONS */
-  .section { padding: 90px 32px; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
-  .section-label {
-    font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 12px;
-  }
-  .section-title { font-size: clamp(28px, 3vw, 40px); color: var(--navy); margin-bottom: 20px; letter-spacing: -0.3px; }
-  .section-sub { font-size: 16px; color: var(--text-mid); max-width: 540px; line-height: 1.8; }
-
-  /* SERVICES */
-  .services-bg { background: var(--white); }
-  .services-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px; margin-top: 52px;
-  }
-  .service-card {
-    padding: 32px; background: var(--cream); border-radius: 16px;
-    border: 1px solid var(--cream-dark);
-    transition: all 0.25s; cursor: default;
-    position: relative; overflow: hidden;
-  }
-  .service-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: var(--gold); transform: scaleX(0); transform-origin: left;
-    transition: transform 0.3s;
-  }
-  .service-card:hover { box-shadow: 0 12px 40px rgba(26,39,68,0.10); transform: translateY(-3px); }
-  .service-card:hover::before { transform: scaleX(1); }
-  .service-icon {
-    width: 48px; height: 48px; border-radius: 12px;
-    background: rgba(26,39,68,0.07); margin-bottom: 20px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-  }
-  .service-card h3 { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 10px; }
-  .service-card p { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
-
-  /* WHY US */
-  .why-bg { background: var(--cream); }
-  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-  .why-visual {
-    position: relative;
-  }
-  .why-main-card {
-    background: var(--navy); border-radius: 20px; padding: 40px;
-    color: var(--white);
-  }
-  .why-main-card h3 { font-family: 'DM Serif Display', serif; font-size: 26px; margin-bottom: 14px; }
-  .why-main-card p { font-size: 15px; opacity: 0.8; line-height: 1.8; margin-bottom: 24px; }
-  .experience-badge {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: rgba(200,169,110,0.2); border: 1px solid rgba(200,169,110,0.3);
-    border-radius: 100px; padding: 8px 18px;
-  }
-  .experience-badge .num { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--gold); }
-  .experience-badge .txt { font-size: 13px; color: rgba(255,255,255,0.7); }
-  .why-accent-card {
-    position: absolute; bottom: -20px; right: -20px;
-    background: var(--white); border-radius: 12px; padding: 20px 24px;
-    box-shadow: 0 12px 40px rgba(26,39,68,0.15);
-    border-left: 3px solid var(--gold);
-  }
-  .why-accent-card .num { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--navy); }
-  .why-accent-card .txt { font-size: 12px; color: var(--text-mid); }
-  .why-points { display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
-  .why-point { display: flex; gap: 20px; align-items: flex-start; }
-  .why-point-icon {
-    width: 44px; height: 44px; flex-shrink: 0;
-    border-radius: 12px; background: rgba(200,169,110,0.15);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; margin-top: 2px;
-  }
-  .why-point h4 { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--navy); margin-bottom: 6px; }
-  .why-point p { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
-
-  /* PRICING */
-  .pricing-bg { background: var(--white); }
-  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 52px; align-items: start; }
-  .price-card {
-    border-radius: 16px; padding: 36px 30px;
-    border: 1px solid var(--cream-dark);
-    background: var(--cream);
-    position: relative;
-  }
-  .price-card.featured {
-    background: var(--navy); border-color: var(--navy);
-    transform: scale(1.04);
-    box-shadow: 0 20px 60px rgba(26,39,68,0.2);
-  }
-  .price-badge {
-    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-    background: var(--gold); color: var(--navy);
-    font-size: 11px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;
-    padding: 5px 16px; border-radius: 100px;
-    white-space: nowrap;
-  }
-  .price-name { font-size: 13px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 12px; }
-  .price-card:not(.featured) .price-name { color: var(--text-mid); }
-  .price-card.featured .price-name { color: var(--gold); }
-  .price-amount { margin-bottom: 8px; }
-  .price-amount .from { font-size: 13px; color: var(--text-light); }
-  .price-card.featured .price-amount .from { color: rgba(255,255,255,0.5); }
-  .price-amount .num { font-family: 'DM Serif Display', serif; font-size: 40px; }
-  .price-card:not(.featured) .price-amount .num { color: var(--navy); }
-  .price-card.featured .price-amount .num { color: var(--white); }
-  .price-amount .per { font-size: 14px; color: var(--text-mid); }
-  .price-card.featured .price-amount .per { color: rgba(255,255,255,0.6); }
-  .price-desc { font-size: 14px; margin: 12px 0 24px; padding-bottom: 24px; border-bottom: 1px solid; }
-  .price-card:not(.featured) .price-desc { color: var(--text-mid); border-color: var(--border); }
-  .price-card.featured .price-desc { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.15); }
-  .price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-  .price-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; }
-  .price-card:not(.featured) .price-features li { color: var(--text-mid); }
-  .price-card.featured .price-features li { color: rgba(255,255,255,0.8); }
-  .check { color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
-  .price-btn {
-    display: block; text-align: center; text-decoration: none;
-    padding: 13px 20px; border-radius: 8px;
-    font-size: 14px; font-weight: 500; transition: all 0.2s;
-  }
-  .price-card:not(.featured) .price-btn {
-    background: var(--navy); color: var(--white);
-  }
-  .price-card:not(.featured) .price-btn:hover { background: var(--navy-light); }
-  .price-card.featured .price-btn {
-    background: var(--gold); color: var(--navy);
-  }
-  .price-card.featured .price-btn:hover { background: var(--gold-light); }
-  .price-sign { text-align: center; margin-top: 28px; font-size: 14px; color: var(--text-light); }
-
-  /* FAQ */
-  .faq-bg { background: var(--cream); }
-  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 52px; }
-  .faq-item { padding: 28px 0; border-bottom: 1px solid var(--border); }
-  .faq-item:first-child { padding-top: 0; border-top: 1px solid var(--border); }
-  .faq-q { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--navy); margin-bottom: 10px; }
-  .faq-a { font-size: 15px; color: var(--text-mid); line-height: 1.7; }
-
-  /* ABOUT */
-  .about-bg { background: var(--white); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .about-text h2 { margin-bottom: 20px; }
-  .about-text p { color: var(--text-mid); margin-bottom: 16px; font-size: 15px; line-height: 1.8; }
-  .about-quote {
-    background: var(--cream); border-radius: 16px;
-    padding: 32px; margin-top: 32px;
-    border-left: 4px solid var(--gold);
-  }
-  .about-quote p { font-family: 'DM Serif Display', serif; font-size: 20px; font-style: italic; color: var(--navy); margin: 0; line-height: 1.5; }
-  .team-cards { display: flex; flex-direction: column; gap: 20px; }
-  .team-card {
-    background: var(--cream); border-radius: 16px; padding: 28px;
-    display: flex; align-items: center; gap: 20px;
-    border: 1px solid var(--cream-dark);
-    transition: all 0.2s;
-  }
-  .team-card:hover { box-shadow: 0 8px 30px rgba(26,39,68,0.08); transform: translateX(4px); }
-  .team-avatar {
-    width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
-    background: var(--navy);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white);
-    letter-spacing: 1px;
-  }
-  .team-info h4 { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 4px; }
-  .team-info p { font-size: 13px; color: var(--text-mid); margin-bottom: 10px; }
-  .team-contact { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--navy); text-decoration: none; font-weight: 500; }
-  .team-contact:hover { color: var(--gold); }
-
-  /* CONTACT */
-  .contact-bg { background: var(--navy); }
-  .contact-inner {
-    max-width: 1100px; margin: 0 auto; padding: 90px 32px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  }
-  .contact-left h2 { color: var(--white); margin-bottom: 16px; }
-  .contact-left h2 em { font-style: italic; color: var(--gold); }
-  .contact-left p { color: rgba(255,255,255,0.7); font-size: 16px; line-height: 1.8; margin-bottom: 32px; }
-  .contact-detail { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
-  .contact-detail-icon {
-    width: 42px; height: 42px; border-radius: 10px;
-    background: rgba(200,169,110,0.15);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex-shrink: 0;
-  }
-  .contact-detail a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 15px; }
-  .contact-detail a:hover { color: var(--gold); }
-  .contact-detail .small { font-size: 12px; color: rgba(255,255,255,0.4); }
-  .contact-form {
-    background: var(--white); border-radius: 20px; padding: 40px;
-  }
-  .contact-form h3 { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--navy); margin-bottom: 24px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .form-group { margin-bottom: 16px; }
-  label { font-size: 13px; font-weight: 500; color: var(--text); display: block; margin-bottom: 6px; }
-  input, select, textarea {
-    width: 100%; padding: 12px 14px;
-    border: 1px solid var(--border); border-radius: 8px;
-    font-family: 'DM Sans', sans-serif; font-size: 14px;
-    color: var(--text); background: var(--white);
-    transition: border-color 0.2s;
-    outline: none;
-  }
-  input:focus, select:focus, textarea:focus { border-color: var(--navy); }
-  textarea { resize: vertical; min-height: 100px; }
-  .form-btn {
-    width: 100%; padding: 15px; background: var(--navy);
-    color: var(--white); border: none; border-radius: 8px;
-    font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
-    cursor: pointer; transition: background 0.2s;
-  }
-  .form-btn:hover { background: var(--navy-light); }
-  .form-note { font-size: 12px; color: var(--text-light); text-align: center; margin-top: 12px; }
-
-  /* FOOTER */
-  footer {
-    background: #111927; padding: 48px 32px 32px;
-    color: rgba(255,255,255,0.5); font-size: 14px;
-  }
-  .footer-inner { max-width: 1100px; margin: 0 auto; }
-  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
-  .footer-brand .logo { color: var(--white); font-size: 22px; display: block; margin-bottom: 12px; }
-  .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 220px; }
-  .footer-col h5 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 15px; color: rgba(255,255,255,0.85); margin-bottom: 14px; }
-  .footer-col a { display: block; color: rgba(255,255,255,0.45); text-decoration: none; font-size: 14px; margin-bottom: 8px; transition: color 0.2s; }
-  .footer-col a:hover { color: var(--gold); }
-  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .hero-content > * { animation: fadeUp 0.7s ease both; }
-  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
-  .hero-content > *:nth-child(3) { animation-delay: 0.35s; }
-  .hero-content > *:nth-child(4) { animation-delay: 0.5s; }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    .hero-inner, .why-grid, .about-grid, .contact-inner, .faq-grid { grid-template-columns: 1fr; }
-    .hero-card-stack { display: none; }
-    .pricing-grid { grid-template-columns: 1fr; }
-    .price-card.featured { transform: none; }
-    .footer-top { grid-template-columns: 1fr 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 600px) {
-    .nav-links { display: none; }
-    .hero { padding: 100px 20px 60px; }
-    .section { padding: 60px 20px; }
-    .footer-top { grid-template-columns: 1fr; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mekproffsen - Ärlig och professionell bilverkstad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 antialiased">
 
-<!-- NAVIGATION -->
-<nav id="main-nav">
-  <div class="nav-inner">
-    <a href="#" class="logo">Enkel <span>Redovisning</span></a>
-    <ul class="nav-links">
-      <li><a href="#tjanster">Tjänster</a></li>
-      <li><a href="#om-oss">Om oss</a></li>
-      <li><a href="#priser">Priser</a></li>
-      <li><a href="#vanliga-fragor">FAQ</a></li>
-      <li><a href="#kontakt" class="nav-cta">Kostnadsfri offert</a></li>
-    </ul>
-  </div>
-</nav>
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold text-slate-900 tracking-tight">
+                        Mek<span class="text-orange-600">proffsen</span>
+                    </a>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8 font-medium text-slate-600">
+                    <a href="#tjanster" class="hover:text-orange-600 transition-colors">Våra tjänster</a>
+                    <a href="#om-oss" class="hover:text-orange-600 transition-colors">Om oss</a>
+                    <a href="#kontakt" class="hover:text-orange-600 transition-colors">Kontakta oss</a>
+                </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-badge">Auktoriserad redovisningsbyrå</div>
-      <h1>Ekonomin<br>i <em>trygga händer</em><br>– hela Sverige</h1>
-      <p>Vi tar hand om bokföring, deklarationer, löner och bokslut så att du kan lägga all energi på det du gör bäst – driva din verksamhet framåt.</p>
-      <div class="hero-buttons">
-        <a href="#kontakt" class="btn-primary">Begär kostnadsfri offert</a>
-        <a href="#tjanster" class="btn-secondary">Se våra tjänster</a>
-      </div>
-    </div>
-    <div class="hero-card-stack">
-      <div class="floating-pill">✓ Svar inom 24h</div>
-      <div class="stat-card">
-        <div class="label">Aktiva kunder</div>
-        <div class="value">150+</div>
-        <div class="sub">Företag & föreningar i hela Sverige</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">Erfarenhet</div>
-        <div class="value">20+ år</div>
-        <div class="sub">Praktisk erfarenhet inom ekonomi</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">Lägsta pris</div>
-        <div class="value">fr. 1 295 kr</div>
-        <div class="sub">Per månad – allt inkluderat</div>
-      </div>
-    </div>
-  </div>
-</section>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="tel:081234567" class="text-slate-700 font-semibold flex items-center hover:text-orange-600">
+                        <svg class="w-5 h-5 mr-2 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        08-123 45 67
+                    </a>
+                    <a href="#kontakt" class="bg-slate-900 hover:bg-orange-600 text-white px-5 py-2.5 rounded-lg font-medium transition-colors shadow-sm">
+                        Boka tid
+                    </a>
+                </div>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-inner">
-    <div class="trust-item"><div class="trust-icon">🎓</div><span>Akademisk utbildning i företagsekonomi</span></div>
-    <div class="trust-divider"></div>
-    <div class="trust-item"><div class="trust-icon">📊</div><span>Löpande bokföring & moms</span></div>
-    <div class="trust-divider"></div>
-    <div class="trust-item"><div class="trust-icon">🏢</div><span>Företag, föreningar & privatpersoner</span></div>
-    <div class="trust-divider"></div>
-    <div class="trust-item"><div class="trust-icon">💻</div><span>Moderna digitala lösningar</span></div>
-  </div>
-</div>
-
-<!-- SERVICES -->
-<section class="section services-bg" id="tjanster">
-  <div class="section-inner">
-    <div class="section-label">Vad vi erbjuder</div>
-    <h2 class="section-title">Allt din ekonomi behöver,<br>på ett och samma ställe</h2>
-    <p class="section-sub">Från löpande bokföring till strategisk rådgivning – vi anpassar våra tjänster efter din verksamhets unika behov och förutsättningar.</p>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">📒</div>
-        <h3>Löpande bokföring</h3>
-        <p>Vi hanterar alla transaktioner korrekt och löpande enligt gällande lagar och regler, så att du alltid har ordning på ekonomin.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">💰</div>
-        <h3>Lönehantering</h3>
-        <p>Löner, arbetsgivardeklarationer och all administration kopplad till anställda – vi sköter det noggrant och i tid.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📄</div>
-        <h3>Moms & deklarationer</h3>
-        <p>Momsdeklarationer, inkomstdeklarationer och skattefrågor för företag och privatpersoner – rätt gjort, varje gång.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📈</div>
-        <h3>Bokslut & årsredovisning</h3>
-        <p>Vi upprättar bokslut och årsredovisningar enligt gällande regelverk och ser till att allt stämmer till punkt och pricka.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🚀</div>
-        <h3>Starta företag</h3>
-        <p>Från idé till registrerat företag. Vi guidar dig genom hela processen och hjälper till med administrativa frågor från dag ett.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🤝</div>
-        <h3>Föreningsservice</h3>
-        <p>Specialkompetens inom föreningsekonomin. Budget, bokföring och administration anpassad för ideella organisationer.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">💡</div>
-        <h3>Ekonomisk rådgivning</h3>
-        <p>Vi uppmärksammar möjligheter kring avdrag och ersättningar som du kanske missar – och hjälper dig fatta välgrundade beslut.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🌐</div>
-        <h3>Digitala lösningar</h3>
-        <p>Moderna verktyg som ger better överblick. Via vårt nätverk kan vi även hjälpa med webbplatser och revision.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY US -->
-<section class="section why-bg" id="om-oss">
-  <div class="section-inner">
-    <div class="why-grid">
-      <div class="why-visual">
-        <div class="why-main-card">
-          <h3>Nära relationer, tydlig kommunikation</h3>
-          <p>Vi tror att det bästa ekonomistödet bygger på förtroende och långsiktighet – inte anonyma kontaktformulär och automatiserade svar.</p>
-          <div class="experience-badge">
-            <span class="num">20+</span>
-            <span class="txt">års praktisk erfarenhet<br>inom ekonomi</span>
-          </div>
-        </div>
-        <div class="why-accent-card">
-          <div class="num">100%</div>
-          <div class="txt">Personlig kontakt,<br>alltid</div>
-        </div>
-      </div>
-      <div>
-        <div class="section-label">Därför väljer kunder oss</div>
-        <h2 class="section-title">Kompetens med ett mänskligt ansikte</h2>
-        <div class="why-points">
-          <div class="why-point">
-            <div class="why-point-icon">👤</div>
-            <div>
-              <h4>Personlig service</h4>
-              <p>Du får en dedikerad kontaktperson som lär känna din verksamhet på djupet och finns tillgänglig när du har frågor.</p>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" type="button" class="text-slate-600 hover:text-slate-900 focus:outline-none" aria-label="Öppna meny">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
             </div>
-          </div>
-          <div class="why-point">
-            <div class="why-point-icon">🎓</div>
-            <div>
-              <h4>Bred erfarenhet</h4>
-              <p>Vi kombinerar universitetsexamen i företagsekonomi med lång praktisk erfarenhet från både näringsliv och ideell sektor.</p>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-4 space-y-2 shadow-lg">
+            <a href="#tjanster" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-orange-600">Våra tjänster</a>
+            <a href="#om-oss" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-orange-600">Om oss</a>
+            <a href="#kontakt" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-orange-600">Kontakta oss</a>
+            <div class="pt-4 border-t border-slate-100 flex flex-col space-y-3">
+                <a href="tel:081234567" class="px-3 py-2 text-slate-700 font-semibold flex items-center">
+                    📞 08-123 45 67
+                </a>
+                <a href="#kontakt" class="bg-slate-900 text-white text-center px-4 py-2.5 rounded-lg font-medium">Boka tid</a>
             </div>
-          </div>
-          <div class="why-point">
-            <div class="why-point-icon">📱</div>
-            <div>
-              <h4>Smidigt & digitalt</h4>
-              <p>Moderna arbetsmetoder som förenklar din administration. Vi samarbetar med dig oavsett var i Sverige du befinner dig.</p>
-            </div>
-          </div>
-          <div class="why-point">
-            <div class="why-point-icon">📊</div>
-            <div>
-              <h4>Fokus på lönsamhet</h4>
-              <p>Vi hjälper dig inte bara att hålla ordning – vi ser möjligheter till avdrag och ekonomiska fördelar som stärker din verksamhet.</p>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<!-- PRICING -->
-<section class="section pricing-bg" id="priser">
-  <div class="section-inner">
-    <div class="section-label">Transparenta priser</div>
-    <h2 class="section-title">Välj det paket som passar din verksamhet</h2>
-    <p class="section-sub">Alla priser är exklusive moms. Kontakta oss för en offert anpassad exakt efter ditt företags behov.</p>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <div class="price-name">Start</div>
-        <div class="price-amount">
-          <div class="from">Från</div>
-          <span class="num">1 295</span><span class="per"> kr/mån</span>
-        </div>
-        <p class="price-desc">Passar mindre företag med begränsad administration.</p>
-        <ul class="price-features">
-          <li><span class="check">✓</span> Löpande bokföring</li>
-          <li><span class="check">✓</span> Momsdeklaration</li>
-          <li><span class="check">✓</span> Avstämningar</li>
-          <li><span class="check">✓</span> Digital hantering</li>
-          <li><span class="check">✓</span> Support via e-post</li>
-          <li><span class="check">✓</span> Upp till 10 kvitton/mån</li>
-          <li><span class="check">✓</span> Upp till 5 fakturor/mån</li>
-        </ul>
-        <a href="#kontakt" class="price-btn">Kom igång</a>
-      </div>
-      <div class="price-card featured">
-        <div class="price-badge">Mest populärt</div>
-        <div class="price-name">Tillväxt</div>
-        <div class="price-amount">
-          <div class="from">Från</div>
-          <span class="num">1 995</span><span class="per"> kr/mån</span>
-        </div>
-        <p class="price-desc">Passar företag med högre aktivitetsnivå och anställda.</p>
-        <ul class="price-features">
-          <li><span class="check">✓</span> Löpande bokföring</li>
-          <li><span class="check">✓</span> Momsdeklaration</li>
-          <li><span class="check">✓</span> Arbetsgivardeklaration</li>
-          <li><span class="check">✓</span> Lönehantering (upp till 5)</li>
-          <li><span class="check">✓</span> Löpande support</li>
-          <li><span class="check">✓</span> 10–50 kvitton/mån</li>
-          <li><span class="check">✓</span> 5–25 fakturor/mån</li>
-        </ul>
-        <a href="#kontakt" class="price-btn">Kom igång</a>
-      </div>
-      <div class="price-card">
-        <div class="price-name">Företag Plus</div>
-        <div class="price-amount">
-          <span class="num" style="font-size:28px;">Begär offert</span>
-        </div>
-        <p class="price-desc">För större verksamheter med fler anställda eller mer komplex administration.</p>
-        <ul class="price-features">
-          <li><span class="check">✓</span> Bokföring & moms</li>
-          <li><span class="check">✓</span> Arbetsgivardeklaration</li>
-          <li><span class="check">✓</span> Lönehantering</li>
-          <li><span class="check">✓</span> Ekonomisk rådgivning</li>
-          <li><span class="check">✓</span> Skräddarsydda lösningar</li>
-          <li><span class="check">✓</span> Dedikerad kontaktperson</li>
-          <li><span class="check">✓</span> Prioriterad support</li>
-        </ul>
-        <a href="#kontakt" class="price-btn">Ta kontakt</a>
-      </div>
-    </div>
-    <p class="price-sign">Bokslut fr. 2 600 kr &nbsp;|&nbsp; Årsredovisning fr. 5 500 kr &nbsp;|&nbsp; Inkomstdeklaration fr. 1 100 kr &nbsp;|&nbsp; Starta företag fr. 995 kr</p>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="section faq-bg" id="vanliga-fragor">
-  <div class="section-inner">
-    <div class="section-label">Vanliga frågor</div>
-    <h2 class="section-title">Svar på det du undrar</h2>
-    <div class="faq-grid">
-      <div>
-        <div class="faq-item">
-          <div class="faq-q">Hur mycket kostar en redovisningsbyrå?</div>
-          <div class="faq-a">Priset beror på verksamhetens storlek och hur mycket administration det rör sig om. Hos oss börjar de löpande paketen från 1 295 kr i månaden. Kontakta oss för en skräddarsydd offert.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">Kan ni hjälpa mig starta ett nytt företag?</div>
-          <div class="faq-a">Absolut. Vi hjälper dig hela vägen från bolagsregistrering och val av företagsform till att komma igång med löpande bokföring och administration. Tjänsten kostar från 995 kr.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">Fungerar det att arbeta digitalt även om jag bor utanför Stockholm?</div>
-          <div class="faq-a">Ja, vi hjälper kunder i hela Sverige. Tack vare moderna digitala verktyg kan vi samarbeta effektivt oavsett var du befinner dig geografiskt.</div>
-        </div>
-      </div>
-      <div>
-        <div class="faq-item">
-          <div class="faq-q">Hjälper ni även privatpersoner?</div>
-          <div class="faq-a">Ja, vi hjälper privatpersoner med deklaration, skattefrågor och vägledning kring avdrag. Deklarationshjälp kostar från 1 100 kr.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">Arbetar ni med ideella föreningar?</div>
-          <div class="faq-a">Ja, vi har gedigen erfarenhet av föreningsverksamhet och erbjuder stöd inom bokföring, budget, administration och ekonomisk rapportering specifikt anpassad för föreningar.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">Hur snabbt kan jag förvänta mig svar?</div>
-          <div class="faq-a">Vi eftersträvar att svara på alla förfrågningar inom 24 timmar på vardagar. Du har alltid direkt kontakt med din personliga handläggare – inga call centers.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT TEAM -->
-<section class="section about-bg">
-  <div class="section-inner">
-    <div class="about-grid">
-      <div class="about-text">
-        <div class="section-label">Vilka är vi?</div>
-        <h2 class="section-title">Erfarenhet du kan lita på</h2>
-        <p>På Enkel Redovisningsbyrå AB kombinerar vi akademisk kunskap med lång praktisk erfarenhet. Bakom verksamheten står en företagsekonom med universitetsexamen och djup förståelse för såväl näringsliv som ideella organisationer.</p>
-        <p>I teamet finns också över 20 års erfarenhet som ekonomiassistent samt lång bakgrund inom eget företagande. Det ger oss både den teoretiska basen och den praktiska insikten som behövs för att ge verkligt bra stöd.</p>
-        <p>Genom vårt breda nätverk av specialister kan vi dessutom koppla ihop dig med rätt kompetens inom revision och andra företagstjänster när behov uppstår.</p>
-        <div class="about-quote">
-          <p>"Vår vision är att göra ekonomi enkelt, tillgängligt och begripligt för alla verksamheter i Sverige."</p>
-        </div>
-      </div>
-      <div class="team-cards">
-        <div class="team-card">
-          <div class="team-avatar">SE</div>
-          <div class="team-info">
-            <h4>Samir Ejaz</h4>
-            <p>Grundare & ekonomiansvarig</p>
-            <a href="tel:0762774883" class="team-contact">📞 076-277 48 83</a>
-          </div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar">ZE</div>
-          <div class="team-info">
-            <h4>Zahid Ejaz</h4>
-            <p>Ekonomi & kundrelationer</p>
-            <a href="tel:0706221272" class="team-contact">📞 070-622 12 72</a>
-          </div>
-        </div>
-        <div class="team-card" style="flex-direction: column; align-items: flex-start; gap: 10px;">
-          <div style="font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--navy);">E-post</div>
-          <a href="mailto:samirejaz00@gmail.com" class="team-contact" style="font-size: 15px;">✉️ samirejaz00@gmail.com</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact-bg" id="kontakt">
-  <div class="contact-inner">
-    <div class="contact-left">
-      <div class="section-label" style="color: var(--gold);">Ta kontakt</div>
-      <h2>Redo att göra<br><em>ekonomin enklare?</em></h2>
-      <p>Berätta lite om din verksamhet så tar vi ett kostnadsfritt samtal och ser hur vi bäst kan hjälpa dig. Inget åtagande – bara ett ärligt samtal.</p>
-      <div class="contact-detail">
-        <div class="contact-detail-icon">📧</div>
-        <div>
-          <div class="small">E-post</div>
-          <a href="mailto:samirejaz00@gmail.com">samirejaz00@gmail.com</a>
-        </div>
-      </div>
-      <div class="contact-detail">
-        <div class="contact-detail-icon">📞</div>
-        <div>
-          <div class="small">Samir Ejaz</div>
-          <a href="tel:0762774883">076-277 48 83</a>
-        </div>
-      </div>
-      <div class="contact-detail">
-        <div class="contact-detail-icon">📞</div>
-        <div>
-          <div class="small">Zahid Ejaz</div>
-          <a href="tel:0706221272">070-622 12 72</a>
-        </div>
-      </div>
-    </div>
-    <div class="contact-form">
-      <h3>Begär kostnadsfri offert</h3>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="name">Ditt namn</label>
-          <input type="text" id="name" placeholder="Anna Svensson">
-        </div>
-        <div class="form-group">
-          <label for="company">Företag/förening</label>
-          <input type="text" id="company" placeholder="Företaget AB">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="email">E-postadress</label>
-        <input type="email" id="email" placeholder="anna@foretaget.se">
-      </div>
-      <div class="form-group">
-        <label for="service">Vad behöver du hjälp med?</label>
-        <select id="service">
-          <option value="">Välj tjänst...</option>
-          <option>Löpande bokföring</option>
-          <option>Lönehantering</option>
-          <option>Bokslut & årsredovisning</option>
-          <option>Starta företag</option>
-          <option>Föreningsservice</option>
-          <option>Deklaration (privatperson)</option>
-          <option>Övrigt</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="message">Berätta mer (valfritt)</label>
-        <textarea id="message" placeholder="Beskriv kort din verksamhet och dina behov..."></textarea>
-      </div>
-      <button class="form-btn" onclick="handleSubmit()">Skicka förfrågan</button>
-      <p class="form-note">Kostnadsfritt och utan förpliktelser. Vi återkommer inom 24 timmar.</p>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#" class="logo">Enkel <span style="color:var(--gold)">Redovisning</span></a>
-        <p>Enkel Redovisningsbyrå AB – ekonomistöd för företag, föreningar och privatpersoner i hela Sverige.</p>
-      </div>
-      <div class="footer-col">
-        <h5>Tjänster</h5>
-        <a href="#tjanster">Bokföring</a>
-        <a href="#tjanster">Lönehantering</a>
-        <a href="#tjanster">Deklarationer</a>
-        <a href="#tjanster">Bokslut</a>
-        <a href="#tjanster">Starta företag</a>
-      </div>
-      <div class="footer-col">
-        <h5>Företaget</h5>
-        <a href="#om-oss">Om oss</a>
-        <a href="#priser">Priser</a>
-        <a href="#vanliga-fragor">FAQ</a>
-        <a href="#kontakt">Kontakt</a>
-      </div>
-      <div class="footer-col">
-        <h5>Kontakt</h5>
-        <a href="mailto:samirejaz00@gmail.com">samirejaz00@gmail.com</a>
-        <a href="tel:0762774883">076-277 48 83</a>
-        <a href="tel:0706221272">070-622 12 72</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2025 Enkel Redovisningsbyrå AB. Alla rättigheter förbehållna.</span>
-      <span>Org.nr: 556XXX-XXXX</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-  function handleSubmit() {
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    if (!name || !email) {
-      alert('Vänligen fyll i namn och e-postadress.');
-      return;
-    }
-    alert('Tack ' + name + '! Vi återkommer till dig inom 24 timmar.');
-  }
-
-  // Smooth scroll logic that respects fixed header height
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      
-      // If it's just a placeholder "#", let it behave normally or go to top
-      if (targetId === '#') return;
-      
-      const targetElement = document.querySelector(targetId);
-      
-      if (targetElement) {
-        e.preventDefault();
-        const navHeight = document.getElementById('main-nav').offsetHeight;
-        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
+    <section class="relative bg-slate-900 text-white overflow-hidden py-24 md:py-32">
+        <div class="absolute inset-0 opacity-25 bg-[url('https://images.unsplash.com/photo-1616788494707-ec28f08d05a1?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
         
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                    Vi tar hand om din bil. <br class="hidden sm:inline">Ärligt, snabbt och till rätt pris.
+                </h1>
+                <p class="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed">
+                    Hos Mekproffsen slipper du krångliga fackuttryck och oväntade överraskningar på fakturan. Vi går alltid igenom vad som behöver göras innan vi börjar skruva.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row gap-4">
+                    <a href="tel:081234567" class="bg-orange-600 hover:bg-orange-700 text-white text-center px-8 py-4 rounded-xl font-semibold shadow-md transition-colors text-lg">
+                        Ring oss direkt
+                    </a>
+                    <a href="#tjanster" class="bg-white/10 hover:bg-white/20 text-white text-center px-8 py-4 rounded-xl font-semibold backdrop-blur-sm transition-colors text-lg border border-white/20">
+                        Se våra tjänster
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                    <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 text-2xl">💰</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-slate-900">Fast pris – inga konstigheter</h3>
+                        <p class="mt-2 text-slate-600 leading-relaxed">Vi hittar aldrig på extrafel. Skulle vi upptäcka något mer när vi har bilen på lyften, ringer vi alltid dig först och ger ett prisförslag.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                    <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 text-2xl">🤝</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-slate-900">Mekaniker du kan prata med</h3>
+                        <p class="mt-2 text-slate-600 leading-relaxed">Hos oss pratar du direkt med oss som jobbar med din bil. Vi förklarar vad som är fel på ett enkelt sätt, så att du har full koll.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                    <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 text-2xl">🛡️</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-slate-900">Garantier som gäller</h3>
+                        <p class="mt-2 text-slate-600 leading-relaxed">Vi använder bara reservdelar av originalkvalitet eller bättre. Det gör att du behåller din nybilsgaranti och alltid kör tryggt härifrån.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tjanster" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">Det här hjälper vi dig med</h2>
+                <p class="mt-4 text-lg text-slate-600">Oavsett om det är dags för den årliga servicen eller om något låter konstigt under huven, så löser vi det.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="text-3xl mb-4">🔧</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Originalservice & Underhåll</h3>
+                    <p class="text-slate-600 leading-relaxed">Släckta servicelampor, stämpel i boken och bibehållen nybilsgaranti på ett smidigt sätt.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="text-3xl mb-4">🛑</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Bromsar & Upphängning</h3>
+                    <p class="text-slate-600 leading-relaxed">Säkerheten först. Vi byter belägg, bromsskivor och åtgärdar eventuella missljud effektivt.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="text-3xl mb-4">💻</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Felsökning & Diagnos</h3>
+                    <p class="text-slate-600 leading-relaxed">Lyser en varningslampa? Med vår moderna diagnosutrustning hittar vi felet snabbt och precist.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="text-3xl mb-4">🚗</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Däck & Hjulinställning</h3>
+                    <p class="text-slate-600 leading-relaxed">Däckbyte, balansering och fyrhjulsinställning så att dina däck slits jämnt och rullar säkert.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="text-3xl mb-4">❄️</div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">AC-service</h3>
+                    <p class="text-slate-600 leading-relaxed">Håll bilen sval på sommaren och frostfri under vintern med ett välfungerande AC-system.</p>
+                </div>
+                <div class="bg-orange-600 p-8 rounded-2xl shadow-sm text-white flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Något annat som strular?</h3>
+                        <p class="text-orange-100 leading-relaxed">Inga problem. Ring eller sväng förbi, vi fixar det mesta som rullar på fyra hjul.</p>
+                    </div>
+                    <a href="tel:081234567" class="mt-6 inline-block text-center bg-white text-orange-600 font-semibold px-4 py-2.5 rounded-xl hover:bg-orange-50 transition-colors">Ring oss på 08-123 45 67</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="om-oss" class="py-24 bg-white border-t border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-6">Vilka är vi på Mekproffsen?</h2>
+                    <div class="space-y-4 text-slate-600 text-lg leading-relaxed">
+                        <p>Verkstaden startades med en ganska enkel idé: att erbjuda riktigt bra bilservice utan det krångel och de höga priser som man ofta förknippar med de stora märkesverkstäderna.</p>
+                        <p>För oss är bilen mer än bara ett transportmedel – vi vet hur viktig den är för att din vardag ska rulla på. Därför gör vi allt för att ditt verkstadsbesök ska bli så smidigt som möjligt. Vi som skruvar här har lång erfarenhet av alla bilmärken, från äldre trotjänare till helt nya elbilar.</p>
+                        <p class="font-medium text-slate-900">Kom förbi på en kaffe och prata bil med oss, eller ring om det är något du undrar över!</p>
+                    </div>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden shadow-md aspect-video lg:aspect-square bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1530047139182-54859954df26?auto=format&fit=crop&w=800&q=80" alt="Mekproffsen Verkstad" class="object-cover w-full h-full mix-blend-multiply opacity-90">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-center text-3xl font-bold text-slate-900 mb-12">Vad våra kunder säger</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="text-orange-500 text-xl mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-slate-700 italic leading-relaxed">"Supertrevligt bemötande! De ringde och förklarade exakt vad som behövde bytas innan de gjorde jobbet. Mycket billigare än märkesverkstaden."</p>
+                    <p class="mt-4 font-semibold text-slate-900 text-sm">— Anders G., Stockholm</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                    <div class="text-orange-500 text-xl mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-slate-700 italic leading-relaxed">"Snabbt, ärligt och proffsigt. Kommer definitivt lämna bilen här nästa gång det är dags för service."</p>
+                    <p class="mt-4 font-semibold text-slate-900 text-sm">— Maria K.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="kontakt" class="bg-slate-900 text-white pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 pb-16 border-b border-slate-800">
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Mek<span class="text-orange-500">proffsen</span></h3>
+                    <p class="text-slate-400 mb-6 max-w-sm">Din personliga bilverkstad. Välkommen att höra av dig eller besöka oss direkt.</p>
+                    <div class="space-y-3">
+                        <p class="flex items-center text-lg font-semibold text-white">
+                            <span class="mr-3 text-xl">📞</span> 08-123 45 67
+                        </p>
+                        <p class="flex items-center text-slate-300">
+                            <span class="mr-3 text-xl">📧</span> info@mekproffsen.se
+                        </p>
+                        <p class="flex items-center text-slate-300">
+                            <span class="mr-3 text-xl">📍</span> Bilgatan 12, 123 45 Stad
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold tracking-wider text-slate-200 uppercase mb-6">Öppettider</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        <li class="flex justify-between"><span>Måndag – Torsdag:</span> <span class="font-medium text-white">07:00 – 17:00</span></li>
+                        <li class="flex justify-between"><span>Fredag:</span> <span class="font-medium text-white">07:00 – 15:00</span></li>
+                        <li class="flex justify-between text-slate-500"><span>Lördag – Söndag:</span> <span>Stängt</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold tracking-wider text-slate-200 uppercase mb-6">Skicka en snabb fråga</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <input type="text" placeholder="Ditt namn" required class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors">
+                        <input type="tel" placeholder="Telefonnummer eller E-post" required class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors">
+                        <textarea placeholder="Vad kan vi hjälpa dig med?" rows="3" required class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors"></textarea>
+                        <button type="submit" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-lg font-semibold transition-colors shadow-sm">Skicka meddelande</button>
+                    </form>
+                    <p id="form-success" class="hidden mt-3 text-emerald-400 font-medium text-sm">Tack! Vi hör av oss så fort vi kan, oftast inom en timme.</p>
+                </div>
+
+            </div>
+
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500">
+                <p>&copy; 2026 Mekproffsen. Alla rättigheter reserverade.</p>
+                <p class="mt-2 sm:mt-0">Designad för riktiga bilägare.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Mobilmeny - Öppna/Stäng
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenu.classList.toggle('hidden');
+            
+            // Ändra ikon från "burgare" till "X" när menyn är öppen
+            if (!isExpanded) {
+                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+            } else {
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            }
         });
-      }
-    });
-  });
 
-  // Subtle scroll animation
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(el => {
-      if (el.isIntersecting) {
-        el.target.style.opacity = '1';
-        el.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
+        // Stäng mobilmenyn automatiskt när man klickar på en länk
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            });
+        });
 
-  document.querySelectorAll('.service-card, .why-point, .team-card, .faq-item, .price-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(el);
-  });
-</script>
+        // 2. Kontaktformulär - Enkel simulering av inskick
+        const contactForm = document.getElementById('contact-form');
+        const successMessage = document.getElementById('form-success');
 
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Hindrar sidan från att laddas om
+            
+            // Här kan du senare koppla på ett riktigt skript (t.ex. via Formspree eller backend)
+            // Just nu rensar vi bara formuläret och visar succé-texten direkt
+            contactForm.reset();
+            successMessage.classList.remove('hidden');
+            
+            // Dölj succémeddelandet igen efter 5 sekunder
+            setTimeout(() => {
+                successMessage.classList.add('hidden');
+            }, 5000);
+        });
+    </script>
 </body>
 </html>
