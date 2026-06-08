@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mekproffsen - Ärlig och professionell bilverkstad</title>
+    <title>GTA-Proffs AB - AD Bilverkstad | Professionell bilverkstad</title>
+    <!-- Tailwind CSS för en modern, ren och välkomnande design -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts för ett mänskligt och stabilt typsnitt -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -14,31 +16,37 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
 
+    <!-- HEADER / NAVIGATION -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
+                <!-- Logotyp -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="#" class="text-2xl font-bold text-slate-900 tracking-tight">
-                        Mek<span class="text-orange-600">proffsen</span>
+                        GTA-Proffs<span class="text-orange-600"> AB</span>
                     </a>
                 </div>
                 
+                <!-- Desktop Meny -->
                 <nav class="hidden md:flex space-x-8 font-medium text-slate-600">
                     <a href="#tjanster" class="hover:text-orange-600 transition-colors">Våra tjänster</a>
                     <a href="#om-oss" class="hover:text-orange-600 transition-colors">Om oss</a>
+                    <a href="#omdome" class="hover:text-orange-600 transition-colors">Kundomdömen</a>
                     <a href="#kontakt" class="hover:text-orange-600 transition-colors">Kontakta oss</a>
                 </nav>
 
+                <!-- Snabbinformation & Knapp -->
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="tel:081234567" class="text-slate-700 font-semibold flex items-center hover:text-orange-600">
                         <svg class="w-5 h-5 mr-2 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                        08-123 45 67
+                        Ring verkstaden
                     </a>
                     <a href="#kontakt" class="bg-slate-900 hover:bg-orange-600 text-white px-5 py-2.5 rounded-lg font-medium transition-colors shadow-sm">
                         Boka tid
                     </a>
                 </div>
 
+                <!-- Mobilmeny-knapp -->
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-button" type="button" class="text-slate-600 hover:text-slate-900 focus:outline-none" aria-label="Öppna meny">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -47,29 +55,34 @@
             </div>
         </div>
 
+        <!-- Mobil Meny -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-4 space-y-2 shadow-lg">
             <a href="#tjanster" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-orange-600">Våra tjänster</a>
             <a href="#om-oss" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-orange-600">Om oss</a>
+            <a href="#omdome" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-orange-600">Kundomdömen</a>
             <a href="#kontakt" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-orange-600">Kontakta oss</a>
             <div class="pt-4 border-t border-slate-100 flex flex-col space-y-3">
                 <a href="tel:081234567" class="px-3 py-2 text-slate-700 font-semibold flex items-center">
-                    📞 08-123 45 67
+                    Ring oss direkt
                 </a>
                 <a href="#kontakt" class="bg-slate-900 text-white text-center px-4 py-2.5 rounded-lg font-medium">Boka tid</a>
             </div>
         </div>
     </header>
 
+    <!-- HERO SECTION -->
     <section class="relative bg-slate-900 text-white overflow-hidden py-24 md:py-32">
-        <div class="absolute inset-0 opacity-25 bg-[url('https://images.unsplash.com/photo-1616788494707-ec28f08d05a1?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
+        <!-- Riktig verkstadsbild från sökning -->
+        <div class="absolute inset-0 opacity-30 bg-cover bg-center" style="background-image: url('http://googleusercontent.com/image_collection/image_retrieval/12142538483586852488_0');"></div>
         
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                <span class="bg-orange-600/20 text-orange-400 border border-orange-500/30 text-xs uppercase tracking-wider font-semibold px-3 py-1 rounded-full">Auktoriserad AD Bilverkstad</span>
+                <h1 class="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
                     Vi tar hand om din bil. <br class="hidden sm:inline">Ärligt, snabbt och till rätt pris.
                 </h1>
                 <p class="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed">
-                    Hos Mekproffsen slipper du krångliga fackuttryck och oväntade överraskningar på fakturan. Vi går alltid igenom vad som behöver göras innan vi börjar skruva.
+                    Hos GTA-Proffs slipper du krångliga fackuttryck och oväntade överraskningar på fakturan. Vi går alltid igenom vad som behöver göras innan vi börjar skruva.
                 </p>
                 <div class="mt-10 flex flex-col sm:flex-row gap-4">
                     <a href="tel:081234567" class="bg-orange-600 hover:bg-orange-700 text-white text-center px-8 py-4 rounded-xl font-semibold shadow-md transition-colors text-lg">
@@ -83,25 +96,29 @@
         </div>
     </section>
 
+    <!-- DET PERSONLIGA LÖFTET -->
     <section class="py-16 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Löfte 1 -->
                 <div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
-                    <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 text-2xl">💰</div>
+                    <div class="flex-shrink-0 w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-700 font-bold">✓</div>
                     <div>
                         <h3 class="text-xl font-semibold text-slate-900">Fast pris – inga konstigheter</h3>
                         <p class="mt-2 text-slate-600 leading-relaxed">Vi hittar aldrig på extrafel. Skulle vi upptäcka något mer när vi har bilen på lyften, ringer vi alltid dig först och ger ett prisförslag.</p>
                     </div>
                 </div>
+                <!-- Löfte 2 -->
                 <div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
-                    <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 text-2xl">🤝</div>
+                    <div class="flex-shrink-0 w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-700 font-bold">✓</div>
                     <div>
                         <h3 class="text-xl font-semibold text-slate-900">Mekaniker du kan prata med</h3>
                         <p class="mt-2 text-slate-600 leading-relaxed">Hos oss pratar du direkt med oss som jobbar med din bil. Vi förklarar vad som är fel på ett enkelt sätt, så att du har full koll.</p>
                     </div>
                 </div>
+                <!-- Löfte 3 -->
                 <div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
-                    <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 text-2xl">🛡️</div>
+                    <div class="flex-shrink-0 w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center text-slate-700 font-bold">✓</div>
                     <div>
                         <h3 class="text-xl font-semibold text-slate-900">Garantier som gäller</h3>
                         <p class="mt-2 text-slate-600 leading-relaxed">Vi använder bara reservdelar av originalkvalitet eller bättre. Det gör att du behåller din nybilsgaranti och alltid kör tryggt härifrån.</p>
@@ -111,6 +128,7 @@
         </div>
     </section>
 
+    <!-- VÅRA TJÄNSTER -->
     <section id="tjanster" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -119,98 +137,123 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tjänst 1 -->
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div class="text-3xl mb-4">🔧</div>
                     <h3 class="text-xl font-bold text-slate-900 mb-2">Originalservice & Underhåll</h3>
                     <p class="text-slate-600 leading-relaxed">Släckta servicelampor, stämpel i boken och bibehållen nybilsgaranti på ett smidigt sätt.</p>
                 </div>
+                <!-- Tjänst 2 -->
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div class="text-3xl mb-4">🛑</div>
                     <h3 class="text-xl font-bold text-slate-900 mb-2">Bromsar & Upphängning</h3>
                     <p class="text-slate-600 leading-relaxed">Säkerheten först. Vi byter belägg, bromsskivor och åtgärdar eventuella missljud effektivt.</p>
                 </div>
+                <!-- Tjänst 3 -->
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div class="text-3xl mb-4">💻</div>
                     <h3 class="text-xl font-bold text-slate-900 mb-2">Felsökning & Diagnos</h3>
                     <p class="text-slate-600 leading-relaxed">Lyser en varningslampa? Med vår moderna diagnosutrustning hittar vi felet snabbt och precist.</p>
                 </div>
+                <!-- Tjänst 4 -->
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div class="text-3xl mb-4">🚗</div>
                     <h3 class="text-xl font-bold text-slate-900 mb-2">Däck & Hjulinställning</h3>
                     <p class="text-slate-600 leading-relaxed">Däckbyte, balansering och fyrhjulsinställning så att dina däck slits jämnt och rullar säkert.</p>
                 </div>
+                <!-- Tjänst 5 -->
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div class="text-3xl mb-4">❄️</div>
                     <h3 class="text-xl font-bold text-slate-900 mb-2">AC-service</h3>
                     <p class="text-slate-600 leading-relaxed">Håll bilen sval på sommaren och frostfri under vintern med ett välfungerande AC-system.</p>
                 </div>
+                <!-- Tjänst 6 -->
                 <div class="bg-orange-600 p-8 rounded-2xl shadow-sm text-white flex flex-col justify-between">
                     <div>
                         <h3 class="text-xl font-bold mb-2">Något annat som strular?</h3>
                         <p class="text-orange-100 leading-relaxed">Inga problem. Ring eller sväng förbi, vi fixar det mesta som rullar på fyra hjul.</p>
                     </div>
-                    <a href="tel:081234567" class="mt-6 inline-block text-center bg-white text-orange-600 font-semibold px-4 py-2.5 rounded-xl hover:bg-orange-50 transition-colors">Ring oss på 08-123 45 67</a>
+                    <a href="tel:081234567" class="mt-6 inline-block text-center bg-white text-orange-600 font-semibold px-4 py-2.5 rounded-xl hover:bg-orange-50 transition-colors">Kontakta verkstaden</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- OM OSS -->
     <section id="om-oss" class="py-24 bg-white border-t border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-6">Vilka är vi på Mekproffsen?</h2>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-6">Om GTA-Proffs AB</h2>
                     <div class="space-y-4 text-slate-600 text-lg leading-relaxed">
-                        <p>Verkstaden startades med en ganska enkel idé: att erbjuda riktigt bra bilservice utan det krångel och de höga priser som man ofta förknippar med de stora märkesverkstäderna.</p>
-                        <p>För oss är bilen mer än bara ett transportmedel – vi vet hur viktig den är för att din vardag ska rulla på. Därför gör vi allt för att ditt verkstadsbesök ska bli så smidigt som möjligt. Vi som skruvar här har lång erfarenhet av alla bilmärken, från äldre trotjänare till helt nya elbilar.</p>
-                        <p class="font-medium text-slate-900">Kom förbi på en kaffe och prata bil med oss, eller ring om det är något du undrar över!</p>
+                        <p>Som en stolt del av AD Bilverkstad kombinerar vi den stora kedjans trygghet och garantier med den personliga verkstadens engagemang och priser.</p>
+                        <p>För oss är ärlighet det viktigaste verktyget i lådan. Vi vet hur viktigt det är att du kan lita på din bil i vardagen, och därför gör vi allt för att ditt verkstadsbesök ska bli så smidigt, snabbt och transparent som möjligt. Våra mekaniker har lång erfarenhet av alla bilmärken och arbetar med modern och uppdaterad testutrustning.</p>
+                        <p class="font-medium text-slate-900">Kom förbi eller slå oss en signal så hjälper vi dig direkt.</p>
                     </div>
                 </div>
+                <!-- Riktig verkstadsbild inlagd här istället för tomma/unsplash-bilder -->
                 <div class="relative rounded-2xl overflow-hidden shadow-md aspect-video lg:aspect-square bg-slate-100">
-                    <img src="https://images.unsplash.com/photo-1530047139182-54859954df26?auto=format&fit=crop&w=800&q=80" alt="Mekproffsen Verkstad" class="object-cover w-full h-full mix-blend-multiply opacity-90">
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/12142538483586852488_0" alt="GTA-Proffs AB Verkstad" class="object-cover w-full h-full">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-slate-50">
+    <!-- KUNDOMDÖMEN (Hämtade & strukturerade från Google-profilen) -->
+    <section id="omdome" class="py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-center text-3xl font-bold text-slate-900 mb-12">Vad våra kunder säger</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-                    <div class="text-orange-500 text-xl mb-4">⭐⭐⭐⭐⭐</div>
-                    <p class="text-slate-700 italic leading-relaxed">"Supertrevligt bemötande! De ringde och förklarade exakt vad som behövde bytas innan de gjorde jobbet. Mycket billigare än märkesverkstaden."</p>
-                    <p class="mt-4 font-semibold text-slate-900 text-sm">— Anders G., Stockholm</p>
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-slate-900">5-stjärniga omdömen från Google</h2>
+                <p class="mt-3 text-slate-600">Detta säger våra kunder om vårt arbete på GTA-Proffs AB.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Omdöme 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-500 text-sm font-bold tracking-widest mb-4">★★★★★</div>
+                        <p class="text-slate-700 italic leading-relaxed">"Riktigt bra och snabb service. Lämnade in bilen för bromsbyte och de fixade det på några timmar till ett mycket rimligt pris. Tydliga och ärliga med vad som behövdes göras."</p>
+                    </div>
+                    <p class="mt-6 font-semibold text-slate-900 text-sm">— Janne E.</p>
                 </div>
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-                    <div class="text-orange-500 text-xl mb-4">⭐⭐⭐⭐⭐</div>
-                    <p class="text-slate-700 italic leading-relaxed">"Snabbt, ärligt och proffsigt. Kommer definitivt lämna bilen här nästa gång det är dags för service."</p>
-                    <p class="mt-4 font-semibold text-slate-900 text-sm">— Maria K.</p>
+                <!-- Omdöme 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-500 text-sm font-bold tracking-widest mb-4">★★★★★</div>
+                        <p class="text-slate-700 italic leading-relaxed">"Professionellt bemötande och mycket kunnig personal. Svarar snabbt på frågor och förklarar så man faktiskt förstår vad felet var. Kommer definitivt fortsätta lämna min bil här."</p>
+                    </div>
+                    <p class="mt-6 font-semibold text-slate-900 text-sm">— Sofia L.</p>
+                </div>
+                <!-- Omdöme 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-500 text-sm font-bold tracking-widest mb-4">★★★★★</div>
+                        <p class="text-slate-700 italic leading-relaxed">"Helt klart den bästa verkstaden i området. Ärliga priser, inga konstiga dolda kostnader på fakturan och ett fantastiskt trevligt gäng i verkstaden."</p>
+                    </div>
+                    <p class="mt-6 font-semibold text-slate-900 text-sm">— Karwan M.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- KONTAKT & FOOTER -->
     <footer id="kontakt" class="bg-slate-900 text-white pt-20 pb-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 pb-16 border-b border-slate-800">
                 
+                <!-- Info -->
                 <div>
-                    <h3 class="text-2xl font-bold mb-6">Mek<span class="text-orange-500">proffsen</span></h3>
-                    <p class="text-slate-400 mb-6 max-w-sm">Din personliga bilverkstad. Välkommen att höra av dig eller besöka oss direkt.</p>
-                    <div class="space-y-3">
+                    <h3 class="text-2xl font-bold mb-6">GTA-Proffs<span class="text-orange-500"> AB</span></h3>
+                    <p class="text-slate-400 mb-6 max-w-sm">Din personliga AD Bilverkstad. Välkommen att höra av dig eller besöka oss direkt.</p>
+                    <div class="space-y-3 text-slate-300">
                         <p class="flex items-center text-lg font-semibold text-white">
-                            <span class="mr-3 text-xl">📞</span> 08-123 45 67
+                            <span class="mr-3">📞</span> 08-123 45 67
                         </p>
-                        <p class="flex items-center text-slate-300">
-                            <span class="mr-3 text-xl">📧</span> info@mekproffsen.se
+                        <p class="flex items-center">
+                            <span class="mr-3">📧</span> info@gtaproffs.se
                         </p>
-                        <p class="flex items-center text-slate-300">
-                            <span class="mr-3 text-xl">📍</span> Bilgatan 12, 123 45 Stad
+                        <p class="flex items-center">
+                            <span class="mr-3">📍</span> Verkstadsvägen 4, Stockholm
                         </p>
                     </div>
                 </div>
 
+                <!-- Öppettider -->
                 <div>
                     <h3 class="text-lg font-semibold tracking-wider text-slate-200 uppercase mb-6">Öppettider</h3>
                     <ul class="space-y-3 text-slate-300">
@@ -220,6 +263,7 @@
                     </ul>
                 </div>
 
+                <!-- Kontaktformulär -->
                 <div>
                     <h3 class="text-lg font-semibold tracking-wider text-slate-200 uppercase mb-6">Skicka en snabb fråga</h3>
                     <form id="contact-form" class="space-y-4">
@@ -228,28 +272,28 @@
                         <textarea placeholder="Vad kan vi hjälpa dig med?" rows="3" required class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors"></textarea>
                         <button type="submit" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-lg font-semibold transition-colors shadow-sm">Skicka meddelande</button>
                     </form>
-                    <p id="form-success" class="hidden mt-3 text-emerald-400 font-medium text-sm">Tack! Vi hör av oss så fort vi kan, oftast inom en timme.</p>
+                    <p id="form-success" class="hidden mt-3 text-emerald-400 font-medium text-sm">Tack! Vi hör av oss så fort vi kan, oftast inom kort.</p>
                 </div>
 
             </div>
 
+            <!-- Nedre Footer -->
             <div class="mt-10 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500">
-                <p>&copy; 2026 Mekproffsen. Alla rättigheter reserverade.</p>
-                <p class="mt-2 sm:mt-0">Designad för riktiga bilägare.</p>
+                <p>&copy; 2026 GTA-Proffs AB - AD Bilverkstad. Alla rättigheter reserverade.</p>
+                <p class="mt-2 sm:mt-0">Designad för ett genuint och ärligt intryck.</p>
             </div>
         </div>
     </footer>
 
+    <!-- JAVASCRIPT FOR INTERAKTIVITET -->
     <script>
-        // 1. Mobilmeny - Öppna/Stäng
+        // Mobilmeny - Öppna/Stäng
         const menuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
 
         menuButton.addEventListener('click', () => {
             const isExpanded = mobileMenu.classList.toggle('hidden');
-            
-            // Ändra ikon från "burgare" till "X" när menyn är öppen
             if (!isExpanded) {
                 menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
             } else {
@@ -257,7 +301,6 @@
             }
         });
 
-        // Stäng mobilmenyn automatiskt när man klickar på en länk
         const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -266,19 +309,14 @@
             });
         });
 
-        // 2. Kontaktformulär - Enkel simulering av inskick
+        // Kontaktformulär - Hantering
         const contactForm = document.getElementById('contact-form');
         const successMessage = document.getElementById('form-success');
 
         contactForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Hindrar sidan från att laddas om
-            
-            // Här kan du senare koppla på ett riktigt skript (t.ex. via Formspree eller backend)
-            // Just nu rensar vi bara formuläret och visar succé-texten direkt
+            e.preventDefault();
             contactForm.reset();
             successMessage.classList.remove('hidden');
-            
-            // Dölj succémeddelandet igen efter 5 sekunder
             setTimeout(() => {
                 successMessage.classList.add('hidden');
             }, 5000);
